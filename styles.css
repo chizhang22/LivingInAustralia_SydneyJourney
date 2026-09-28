@@ -85,7 +85,7 @@ h1{max-width:none;font-size:clamp(1.9rem,3.15vw,3.25rem);line-height:.95;letter-
 .speech-bubble{
   position:absolute;width:min(23vw,23rem);padding:1rem 1.15rem;border:2px solid rgba(8,26,59,.15);
   border-radius:22px;background:rgba(255,249,239,.97);color:var(--ink);box-shadow:0 16px 42px rgba(2,12,34,.24);
-  font-size:clamp(1rem,1.35vw,1.28rem);line-height:1.35;transform-origin:80% 100%;animation:bubble-pop .52s cubic-bezier(.18,.88,.2,1)
+  font-size:clamp(1rem,1.35vw,1.28rem);line-height:1.35;transform-origin:80% 100%
 }
 .speech-bubble b{display:block;margin-bottom:.25rem;color:var(--purple);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
 .speech-bubble span{display:block;font-weight:720;white-space:pre-line}
@@ -126,4 +126,28 @@ h1{max-width:none;font-size:clamp(1.9rem,3.15vw,3.25rem);line-height:.95;letter-
   .guides{width:56vw;right:-5vw;opacity:.52}.hud{top:8%;width:auto}.speech-bubble{width:78vw;padding:.75rem .9rem}
   .kori-bubble{left:4vw;right:auto;top:34%}.roo-bubble{right:4vw;top:20%}.local-bubble{right:4vw;top:24%;width:82vw}
   .lyric-card{left:4vw;right:4vw;top:17%;min-width:0}.action-button{bottom:1rem;min-width:90vw}.control-hint{display:none}
+}
+
+/* Scene copy is revealed as one cancellable group 500ms after the artwork. */
+.stage.content-pending .story-card,
+.stage.content-pending .speech-bubble:not([hidden]),
+.stage.content-pending .action-button{
+  opacity:0;visibility:hidden;pointer-events:none
+}
+.stage.content-ready .story-card{animation:story-content-in 320ms cubic-bezier(.2,.82,.24,1.12) both}
+.stage.content-ready .speech-bubble:not([hidden]){animation:bubble-content-in 320ms cubic-bezier(.18,.88,.2,1.14) both}
+.stage.content-ready .action-button{animation:action-content-in 320ms cubic-bezier(.2,.82,.24,1.12) both,action-breathe 2.6s ease-in-out 320ms infinite}
+@keyframes story-content-in{0%{opacity:0;transform:translateY(13px) scale(.975)}72%{opacity:1;transform:translateY(-2px) scale(1.008)}100%{opacity:1;transform:none}}
+@keyframes bubble-content-in{0%{opacity:0;transform:translateY(14px) scale(.91)}72%{opacity:1;transform:translateY(-2px) scale(1.018)}100%{opacity:1;transform:none}}
+@keyframes action-content-in{0%{opacity:0;transform:translateX(-50%) translateY(12px) scale(.97)}72%{opacity:1;transform:translateX(-50%) translateY(-2px) scale(1.008)}100%{opacity:1;transform:translateX(-50%)}}
+@keyframes content-fade-in{from{opacity:0}to{opacity:1}}
+.app.reduce-motion .stage.content-ready .story-card,
+.app.reduce-motion .stage.content-ready .speech-bubble:not([hidden]),
+.app.reduce-motion .stage.content-ready .action-button{
+  animation:content-fade-in 300ms ease both!important
+}
+@media (prefers-reduced-motion:reduce){
+  .stage.content-ready .story-card,
+  .stage.content-ready .speech-bubble:not([hidden]),
+  .stage.content-ready .action-button{animation:content-fade-in 300ms ease both!important}
 }
