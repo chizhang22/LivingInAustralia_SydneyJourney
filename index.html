@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b2a66">
+  <meta name="description" content="An interactive journey through Sydney on 25–26 January 2026.">
+  <title>Living in Australia — Sydney Journey</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b2a66'/%3E%3Cpath d='M12 46c12-7 15-25 23-30 1 13 9 20 17 30' fill='none' stroke='%23f6c445' stroke-width='6' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='34' r='5' fill='%23fff9ef'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app" class="app" data-motif="cover">
+    <main id="stage" class="stage" aria-label="Living in Australia interactive story">
+      <canvas id="scene-canvas" class="scene-canvas" aria-hidden="true"></canvas>
+      <img id="scene-image" class="scene-image" alt="" hidden>
+      <div class="image-wash" aria-hidden="true"></div>
+      <img id="guides" class="guides" src="assets/kori_roo_pair.png" alt="Kori the koala and Roo the kangaroo waving" hidden>
+
+      <section id="cover-art" class="cover-art" aria-hidden="true">
+        <div class="faculty-mark"><span>○</span><span>◇</span><b>INTERACTIVE STORY LAB</b></div>
+        <div class="cover-motto">REFLECT&nbsp; / &nbsp;RESPECT&nbsp; / &nbsp;CELEBRATE</div>
+        <div class="cover-notes"><span>●</span> 15-minute interactive story<br><span>●</span> Sydney, Gadigal Country</div>
+        <div class="cover-building"><i></i><i></i><i></i></div>
+      </section>
+
+      <header class="topbar">
+        <div id="progress" class="progress">01 / 14 · COVER</div>
+        <div class="top-actions">
+          <button id="mute-button" class="icon-button" aria-label="Mute audio" title="Mute audio (M)">♫</button>
+          <button id="fullscreen-button" class="icon-button" aria-label="Toggle fullscreen" title="Fullscreen (F)">⛶</button>
+          <button id="menu-button" class="icon-button" aria-label="Open journey menu" title="Journey menu (Esc)">☰</button>
+        </div>
+      </header>
+
+      <aside id="hud" class="hud" hidden>
+        <div id="hud-time" class="hud-time">JAN 25 2026 · 3:30 PM</div>
+        <div id="hud-location" class="hud-location">CIRCULAR QUAY</div>
+        <div class="hud-country">Gadigal Country · AEDT (UTC+11)</div>
+      </aside>
+
+      <section id="story-card" class="story-card" aria-live="polite">
+        <p id="eyebrow" class="eyebrow">AN INTERACTIVE JOURNEY</p>
+        <h1 id="scene-title">LIVING IN AUSTRALIA</h1>
+        <p id="scene-body" class="scene-body">How Sydney Lives Through Australia Day<br>An interactive journey • 25–26 January 2026</p>
+      </section>
+
+      <section id="speaker-layer" class="speaker-layer" aria-live="polite">
+        <div id="kori-bubble" class="speech-bubble kori-bubble" hidden><b>Kori</b><span></span></div>
+        <div id="roo-bubble" class="speech-bubble roo-bubble" hidden><b>Roo</b><span></span></div>
+        <div id="local-bubble" class="speech-bubble local-bubble" hidden><b>Sydney local</b><span></span></div>
+        <div id="lyric-card" class="lyric-card" hidden><span>♪</span><strong>你问我爱你有多深<br>月亮代表我的心</strong></div>
+      </section>
+
+      <section id="fact-card" class="fact-card" hidden aria-live="polite"></section>
+      <button id="action-button" class="action-button">CLICK TO BEGIN</button>
+      <p id="control-hint" class="control-hint">CLICK / SPACE · M MUTE · ESC MENU</p>
+
+      <div id="transition" class="transition" aria-hidden="true">
+        <div class="portal-rings"></div>
+        <div class="paper-piece p1"></div><div class="paper-piece p2"></div><div class="paper-piece p3"></div>
+        <div class="flash"></div>
+      </div>
+    </main>
+
+    <dialog id="journey-menu" class="journey-menu">
+      <form method="dialog">
+        <header><div><small>JOURNEY MENU</small><h2>Choose a chapter</h2></div><button class="close-button" value="cancel" aria-label="Close menu">×</button></header>
+        <nav id="chapter-list" class="chapter-list" aria-label="Story chapters"></nav>
+        <div class="setting-grid">
+          <label><input id="autoplay-toggle" type="checkbox" role="switch"><span>Auto-play</span></label>
+          <label><input id="motion-toggle" type="checkbox" role="switch"><span>Reduce motion</span></label>
+          <label><input id="bilingual-toggle" type="checkbox" role="switch"><span>English + 中文</span></label>
+          <label><input id="contrast-toggle" type="checkbox" role="switch"><span>High contrast</span></label>
+        </div>
+        <button class="resume-button" value="cancel">RESUME JOURNEY</button>
+      </form>
+    </dialog>
+    <div id="sr-status" class="sr-only" aria-live="assertive"></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
